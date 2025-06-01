@@ -6,14 +6,12 @@ int main()
     int tab[SIZE] = {3, -2, 7, 10, -5, 22, 1, 27, 25, 30};
     int i, j, tmp, index;
 
-    // Affichage initial du tableau
     printf("Tableau initial :\n");
     for (i = 0; i < SIZE; ++i)
     {
         printf("%4d", tab[i]);
     }
 
-    // Tri par sélection
     for (i = 0; i < SIZE - 1; i++)
     {
         index = i;
@@ -25,7 +23,6 @@ int main()
             }
         }
 
-        // Échanger tab[i] avec tab[index] si nécessaire
         if (index != i)
         {
             tmp = tab[i];
@@ -34,7 +31,6 @@ int main()
         }
     }
 
-    // Affichage du tableau trié
     printf("\n\n******** Tableau trié par ordre croissant ********\n");
     for (i = 0; i < SIZE; i++)
     {
