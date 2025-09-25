@@ -1,13 +1,25 @@
 import sys
 
 class Node():
+    
+    """
+    Un noeud contient:
+    - la position actuelle dans le lab. coord. (x, y)
+    - le noeud précédent (pour reconstruire le chemin)
+    - le mouvement qu'on a fait pour arriver ici
+    """
+    
     def __init__(self, state, parent, action):
         self.state = state
         self.parent = parent
         self.action = action
 
 class StackFrontier():
+    """
+    définition de la pile
+    """
     def __init__(self):
+        """La structure de donnée pile (vide ici)"""
         self.frontier = []
     
     def add(self, node):
@@ -22,61 +34,73 @@ class StackFrontier():
     def remove(self):
         if self.empty:
             raise Exception('empty frontier')
-        node = self.frontier[-1]
+        node = self.frontier[-1] # LIFO
         self.frontier = self.frontier[:-1]
         return node
 
 class QueueFrontier(StackFrontier):
+    """
+    définition de la file
+    """
     def remove(self):
         if self.empty:
             raise Exception('empty frontier')
-        node = self.frontier[0]
+        node = self.frontier[0] # FIFO
         self.frontier = self.frontier[1:]
         return node
+
 
 class Maze():
 
     def __init__(self, filename):
 
-        # Read file and set height and width of maze
+        # Lire le fichier du labyrinthe
         with open(filename) as f:
             contents = f.read()
 
-        # Validate start and goal
+        # valider le contenu: un seul point A et un seul point B
         if contents.count("A") != 1:
             raise Exception("maze must have exactly one start point")
         if contents.count("B") != 1:
             raise Exception("maze must have exactly one goal")
 
-        # Determine height and width of maze
+        # Determinr la hauteur et la largeur du labyrinthe
         contents = contents.splitlines()
         self.height = len(contents)
         self.width = max(len(line) for line in contents)
 
-        # Keep track of walls
+        # Définir les murs
         self.walls = []
         for i in range(self.height):
             row = []
             for j in range(self.width):
                 try:
+                    # si la position a un element A, ce n'est pas un mur
                     if contents[i][j] == "A":
                         self.start = (i, j)
                         row.append(False)
+                    # si la position a un element B, ce n'est pas un mur
                     elif contents[i][j] == "B":
                         self.goal = (i, j)
                         row.append(False)
+                    # si c'est vide, ce n'est pas un mur
                     elif contents[i][j] == " ":
                         row.append(False)
+                    # sinon c'est un mur 
                     else:
                         row.append(True)
                 except IndexError:
                     row.append(False)
             self.walls.append(row)
 
+        # initialiser une liste pour la solution
         self.solution = None
 
 
     def print(self):
+        """
+        Affiche la solution 
+        """
         solution = self.solution[1] if self.solution is not None else None
         print()
         for i, row in enumerate(self.walls):
@@ -96,6 +120,9 @@ class Maze():
 
 
     def neighbors(self, state):
+        """
+        cette fonction prend un etat et défini les déplacements possible
+        """
         row, col = state
         candidates = [
             ("up", (row - 1, col)),
@@ -106,37 +133,44 @@ class Maze():
 
         result = []
         for action, (r, c) in candidates:
+            """
+            si la position de la ligne est compris entre 0 et la hauteur du maze,
+            et si la colonne est compris entre 0 et la largeur du maze
+            et si la position (ligne, colonne) n'est pas un mur
+            on peut se déplacer
+            """
             if 0 <= r < self.height and 0 <= c < self.width and not self.walls[r][c]:
                 result.append((action, (r, c)))
         return result
 
 
     def solve(self):
-        """Finds a solution to maze, if one exists."""
+        """
+        Cherche la solution du maze
+        """
 
-        # Keep track of number of states explored
+        # Ici on initialise une variable pour garder le nombre d'état déjà exploré
         self.num_explored = 0
 
-        # Initialize frontier to just the starting position
+        # Initialiser la structure de donnée, elle contient que l'état initiale 
         start = Node(state=self.start, parent=None, action=None)
         frontier = StackFrontier()
         frontier.add(start)
-
-        # Initialize an empty explored set
+        
+        # Un set vide des etats déja explorés
         self.explored = set()
 
-        # Keep looping until solution found
         while True:
 
-            # If nothing left in frontier, then no path
+            # si la s. de d. est vide, alors pas de solution
             if frontier.empty():
                 raise Exception("no solution")
 
-            # Choose a node from the frontier
+            # Prendre un noeud de la s. de d. et l'ajouter au chemin explorés
             node = frontier.remove()
             self.num_explored += 1
 
-            # If node is the goal, then we have a solution
+            # Si le noeud actuel est l'objectif, alors on a la solution et onreconstruit le chemin
             if node.state == self.goal:
                 actions = []
                 cells = []
@@ -149,10 +183,10 @@ class Maze():
                 self.solution = (actions, cells)
                 return
 
-            # Mark node as explored
+            # Marquer le noeud comme déjà exploré
             self.explored.add(node.state)
 
-            # Add neighbors to frontier
+            # Initialiser le noeud pour la recherche suivante
             for action, state in self.neighbors(node.state):
                 if not frontier.contains_state(state) and state not in self.explored:
                     child = Node(state=state, parent=node, action=action)
