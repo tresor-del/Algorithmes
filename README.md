@@ -7,7 +7,7 @@
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES6%2B-yellow?logo=javascript&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
 
-## contentenus
+## contenus
 
 - La recursion: [rec](rec)
 - Algorithmes de recherche: [search](search)
