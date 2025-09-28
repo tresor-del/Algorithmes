@@ -6,22 +6,22 @@ def dfs(graphe, start):
     
     while pile:
         # prendre le dernier element (a la différence de popleft() pour la file)
-        vertex = pile.pop()
+        sommet = pile.pop()
         
-        if vertex not in visite:
+        if sommet not in visite:
             
-            print(f"Noeud {vertex}")
+            print(f"Noeud {sommet}")
             
-            visite.add(vertex)
+            visite.add(sommet)
             
-            for voisin in graphe[vertex]:
+            for voisin in graphe[sommet]:
                 if voisin not in visite:
                     pile.append(voisin)
             
-            print(f"Voisins de {vertex}: {pile}")
+            print(f"Voisins de {sommet}: {graphe[sommet]}")
             
 if __name__ == "__main__":
     
-    from creation_graphe.main import G
+    from search.graphes.creation_graphe.main import G
 
     dfs(G, "A")
