@@ -1,9 +1,3 @@
-import sys, os
-
-sys.path.append(os.path.abspath("../creation_graphe"))
-
-from main import g
-
 from collections import deque
 
 def dfs(graphe, start):
@@ -26,4 +20,8 @@ def dfs(graphe, start):
             
             print(f"Voisins de {vertex}: {pile}")
             
-dfs(g, "A")
+if __name__ == "__main__":
+    
+    from creation_graphe.main import G
+
+    dfs(G, "A")

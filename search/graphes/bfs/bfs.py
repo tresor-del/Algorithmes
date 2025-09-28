@@ -1,10 +1,5 @@
 from collections import deque
 
-import sys
-import os
-sys.path.append(os.path.abspath("../creation_graphe"))
-
-from main import g
 
 def bfs(graph, start, target):
 
@@ -33,5 +28,9 @@ def bfs(graph, start, target):
             
             print(f"Voisins de {vertex}: ",queue)
 
-bfs(g, "A", "G")
+if __name__ == "__main__":
+    
+    from creation_graphe.main import G
+
+    bfs(G, "A", "G")
 
