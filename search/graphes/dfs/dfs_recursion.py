@@ -43,4 +43,4 @@ if __name__ == "__main__":
     print("Parcours graphe: \n")
     dfs(G, "A")
     print("\n")
-    print("Parcours graphe simple: \n",dfs_simple(g, "e"))
+    print("Parcours graphe simple: \n",dfs_simple(g, "a"))
