@@ -3,3 +3,7 @@ def factorielle(n):
         return 1
     else:
         return n * factorielle(n - 1)  # Appel récursif
+
+if __name__ == "__main__":
+    
+    print(factorielle(3))
