@@ -1,0 +1,18 @@
+SI n = 1 ALORS
+    // Cas de base : Un seul disque est déplacé directement
+    AFFICHER "Déplacer le disque 1 de " + SOURCE + " vers " + DESTINATION
+RETOURNE
+
+SINON
+    // Étape 1 : Déplacer les n-1 disques supérieurs de SOURCE à AUXILIAIRE
+    // (en utilisant DESTINATION comme pile temporaire)
+    DEPLACER_DISQUES(n - 1, SOURCE, AUXILIAIRE, DESTINATION)
+
+    // Étape 2 : Déplacer le plus grand disque (le n-ième) de SOURCE à DESTINATION
+    AFFICHER "Déplacer le disque " + n + " de " + SOURCE + " vers " + DESTINATION
+
+    // Étape 3 : Déplacer les n-1 disques d'AUXILIAIRE à DESTINATION
+    // (en utilisant SOURCE comme pile temporaire)
+    DEPLACER_DISQUES(n - 1, AUXILIAIRE, DESTINATION, SOURCE)
+
+FIN SI
