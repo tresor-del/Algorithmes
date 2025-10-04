@@ -1,7 +1,0 @@
-_*Devoir d'algo*_
-
- On se donne une pile P1 contenant des entiers positifs. 
-Ecrire un algorithme pour déplacer les entiers de P1 dans une pile P2 de façon à avoir dans P2 tous 
-les nombres pairs en dessus des nombres impairs en gardant l’ordre d’apparition des nombre pairs 
-et en inversant l’ordre d’apparition des nombres impairs. Au retour à l’algorithme appelant on doit 
-retrouver P1 initiale.
