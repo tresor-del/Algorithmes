@@ -1,3 +1,5 @@
+[Le concept de Pile et File (Vidéo YouTube)](https://www.youtube.com/watch?v=v_g1yizlUxc)
+
 La pile est l'une des structures les plus fondamentales dans les structure de données! 
 
 °°° Applications Courantes de la Structure de Données "Pile" (Stack)
