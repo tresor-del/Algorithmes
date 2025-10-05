@@ -1,0 +1,9 @@
+  Considérons le problème classique des tours de Hanoï.
+
+--n disques de diamètre n,....,2,1 sont empilés sur une première pile ;
+--deux autres piles sont vides;
+--on peut déplacer le disque  x du dessus d'une pile i vers le dessus d'une pile j si le disque y au-dessus 
+de la pile j possède un diamètre supérieur au disques x;
+--on doit déplacer l'entièreté de première pile sur la deuxième pile. Se réferer à la figure présent qui monttre une illustration dans le cas où n=4;
+--on cherche à déplacer le contenu d'une pile source vers une pile de destination à l'aide d'une pile temporaire;
+--si la source possède k disques, on déplace (récursivement) ses k-1 disques du dessus vers la pile temporaire;
