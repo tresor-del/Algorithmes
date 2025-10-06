@@ -1,5 +1,15 @@
+
+/*
+Tri insertion en language C
+
+Utilisation:
+    - compiler (linux): gcc insertion.c -o i.c
+    - executer: ./i.c
+*/
+
 #include <stdio.h>
 
+// Fonction pour trier
 void tri_insertion(int tab[], int n) {
     int valeur, i, j;
 
