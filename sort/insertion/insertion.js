@@ -1,3 +1,7 @@
+/*
+* Implémentation tri par insertion en javascript 
+*/
+
 function insertionSort(arr) {
   let n = arr.length;
 
@@ -17,4 +21,10 @@ function insertionSort(arr) {
   return arr;
 }
 
-console.log(insertionSort([64, 25, 12, 22, 11]));
+// exemple
+
+console.log(insertionSort([5, 2, 4, 6, 1, 3]));
+
+/*
+* Utilisation: node insertion.js (deps: avoir node.js installé sur le système)
+*/
