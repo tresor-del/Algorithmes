@@ -29,6 +29,7 @@ void tri_insertion(int tab[], int n) {
     
 }
 
+// 
 void afficher_tableau(int tab[], int n) {
     for (int i = 0; i < n; i++) {
         printf("%d ", tab[i]);
