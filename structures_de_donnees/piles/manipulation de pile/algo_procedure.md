@@ -1,4 +1,5 @@
-'''FONCTION EstPair(x : entier) : booléen
+'''
+FONCTION EstPair(x : entier) : booléen
 DEBUT
     RETOURNER (x MOD 2 = 0)
 FIN
