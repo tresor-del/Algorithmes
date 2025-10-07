@@ -3,31 +3,30 @@ Algorithme Fusion mais avec des sentinelles
 """
 
 def tri_fusion(tab, debut, fin):
-    if len(tab) <= 1:
-        return tab
     
-    millieu = len(tab) // 2
-    left = tri_fusion(tab, debut, millieu)
-    right = tri_fusion(tab, millieu + 1, fin)
-    
-    return fusion(left, right)
+    if debut < fin:
+        millieu = (debut + fin) // 2
+        
+        tri_fusion(tab, debut, millieu)
+        tri_fusion(tab, millieu + 1, fin)
+        fusion(tab, debut, millieu, fin)
 
 
 def fusion(tab, debut, milieu, fin):
     
     # calculer la taille des sous tableaux
     n1 = milieu - debut + 1
-    n2 = fin - debut
+    n2 = fin - milieu
     
     # on crée les sous tableaux: left, right
     l = [0] * (n1 + 1)
-    r = [0] * (n2 + 2)
+    r = [0] * (n2 + 1)
     
     # on copie les élements du tableau dans les deux tableaux
     for i in range(n1):
-        l[i] = tab[debut + 1]
+        l[i] = tab[debut + i]
     for j in range(n2):
-        r[i] = tab[milieu + 1 + j]
+        r[j] = tab[milieu + 1 + j]
         
     # ajouter les sentinelles
     l[n1] = float("inf")
@@ -42,5 +41,11 @@ def fusion(tab, debut, milieu, fin):
         else:
             tab[k] = r[j]
             j += 1
+    
+
+# Exemple
+tableau = [5, 2, 9, 1, 7]
+tri_fusion(tableau, 0, len(tableau) -1)
+print(tableau)
     
 
