@@ -9,7 +9,7 @@ Le problème est une simulation de la gestion des clients et des vêtements dans
 
 ### Pseudo code Algorithme principale 
 
-    // PROCEDURE GererCabines()
+    PROCEDURE GererCabines()
 
         // Initialisation
         N_CABINES = 3
@@ -43,11 +43,11 @@ Le problème est une simulation de la gestion des clients et des vêtements dans
         AttribuerCabines(CABINES, ATTENTE, VETEMENTS)
         // Client 3 entre dans la Cabine 0
     
-    // FIN PROCEDURE
+    FIN PROCEDURE
 
 ### pseudo code NouveauClient (Ajout à la File)
 
-    // PROCEDURE NouveauClient(ref F_ATTENTE, ref D_VETEMENTS, ID, L_VETEMENTS)
+    PROCEDURE NouveauClient(ref F_ATTENTE, ref D_VETEMENTS, ID, L_VETEMENTS)
     ENFILER(F_ATTENTE, ID)
     
         // PILE_CLIENT = CreerPileVide()
@@ -58,11 +58,11 @@ Le problème est une simulation de la gestion des clients et des vêtements dans
         // Stocker la pile de vêtements dans le dictionnaire, avec ID comme clé
         D_VETEMENTS[ID] = PILE_CLIENT
         AFFICHER("-> Client", ID, "arrive. File d'attente : ", TAILLE_FILE(F_ATTENTE))
-    // FIN PROCEDURE
+    FIN PROCEDURE
 
 ### pseudo code AttribuerCabines (Gestion du Vecteur et de la File)
 
-    // PROCEDURE AttribuerCabines(ref T_CABINES, ref F_ATTENTE, D_VETEMENTS)
+    PROCEDURE AttribuerCabines(ref T_CABINES, ref F_ATTENTE, D_VETEMENTS)
         POUR i DE 0 A TAILLE(T_CABINES) - 1 FAIRE
             SI T_CABINES[i] == -1 ET NON EST_FILE_VIDE(F_ATTENTE) ALORS
                 ID_CLIENT = DEFILER(F_ATTENTE)
@@ -71,11 +71,11 @@ Le problème est une simulation de la gestion des clients et des vêtements dans
                 AFFICHER("Client", ID_CLIENT, "entre avec une pile de", TAILLE_PILE(D_VETEMENTS[ID_CLIENT]), "vêtements.")
             FIN SI
         FIN POUR
-    // FIN PROCEDURE
+    FIN PROCEDURE
 
 ### pseudo code EssayerVetement(utilisation de la pile)
 
-    // PROCEDURE EssayerVetement(ID_CLIENT, ref D_VETEMENTS)
+    PROCEDURE EssayerVetement(ID_CLIENT, ref D_VETEMENTS)
         SI ID_CLIENT != -1 ALORS
             PILE_CLIENT = D_VETEMENTS[ID_CLIENT]
             SI NON EST_PILE_VIDE(PILE_CLIENT) ALORS
@@ -85,4 +85,4 @@ Le problème est une simulation de la gestion des clients et des vêtements dans
                 AFFICHER("Client", ID_CLIENT, "a fini d'essayer ses vêtements.")
             FIN SI
         FIN SI
-    // FIN PROCEDURE
+    FIN PROCEDURE
