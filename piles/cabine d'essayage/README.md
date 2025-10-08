@@ -10,6 +10,7 @@ Le problème est une simulation de la gestion des clients et des vêtements dans
 ### Pseudo code Algorithme principale 
 
 PROCEDURE GererCabines()
+
     // Initialisation
     N_CABINES = 3
     CABINES = [ -1, -1, -1 ] // Toutes les cabines sont libres
